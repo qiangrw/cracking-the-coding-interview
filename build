@@ -5,6 +5,6 @@ then
 fi
 name=$1
 echo compile and run $name
-g++ -c $name.cpp
+g++ -c $name.cpp -std=c++11
 g++ $name.o -o $name.out
 ./$name.out
