@@ -12,13 +12,16 @@ class minStack {
             s.push(x);
             if(m.empty() || x < m.top()) {
                 m.push(x);
-            } else {
+            } 
+            /*else {
                 m.push(m.top());
-            }
+            }*/
         }
         void pop() {
+            if(s.top() == min()){
+                m.pop();
+            }
             s.pop();
-            m.pop();
         }
         T top() {
             return s.top();
