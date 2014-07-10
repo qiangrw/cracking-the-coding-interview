@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stack>
+#include <climits>
 using namespace std;
 
 template <class T>
@@ -27,12 +28,14 @@ class minStack {
             return s.top();
         }
         T min() {
-            return m.top();
+            if(m.empty()) return INT_MAX;
+            else return m.top();
         }
 };
 
 int main() {
     minStack<int> s;
+    cout << s.min() << endl;
     s.push(5);
     cout << s.min() << endl;
     s.push(6);
