@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 
 struct ListNode {
@@ -30,10 +31,10 @@ ListNode *quicksort(ListNode *head, ListNode **tail) {
     ListNode *t1 = nullptr, *t2 = nullptr;
     ListNode *h1 = quicksort(d1.next, &t1);
     ListNode *h2 = quicksort(d2.next, &t2);
-    if (t1 != nullptr) {
-        t1->next = pivot;
-    }
+    if (t1 != nullptr) t1->next = pivot;
+    *tail = pivot;
     pivot->next = h2;
+    if (t2 != nullptr) *tail = t2;
     return h1 == nullptr ? pivot : h1;
 }
 
@@ -45,12 +46,13 @@ void print(ListNode *head) {
 }
 
 int main() {
-    ListNode *head = new ListNode(1);
-    ListNode *p1 = new ListNode(4);
-    ListNode *p2 = new ListNode(8);
-    ListNode *p3 = new ListNode(5);
-    ListNode *p4 = new ListNode(2);
-    head->next = p1; p1->next = p2; p2->next = p3; p3->next = p4;
+    ListNode* head = new ListNode(4);
+    ListNode* p = head;
+    vector<int> v { 3,4,5,2,3,6,7,9,4,5,2,5,6,3,1 };
+    for (auto a : v) {
+        p->next = new ListNode(a);
+        p = p->next;
+    }
     print(head);
     ListNode *tail;
     head = quicksort(head, &tail);
