@@ -1,7 +1,10 @@
+#include <iostream>
+using namespace std;
 // input: ABAAABBC interval = 3
 // AB__A___A___AB___BC
 
-int computeTime(cont string& input, int interval) {
+
+int computeTime(const string& input, int interval) {
     int a = 0, b = 0, c = 0;
     int res = 0;
     for (const auto& s: input) {
@@ -22,4 +25,8 @@ int computeTime(cont string& input, int interval) {
         if (c > 0) c -= 1;
     }
     return res;
+}
+
+int main() {
+    cout << computeTime("ABAAABBC", 3) << endl;
 }
