@@ -1,0 +1,10 @@
+if [ -z "$1" ]
+then
+    echo "No argu supplied"
+    exit 1
+fi
+name=$1
+echo compile and run $name
+g++ -c $name.cpp -std=c++11
+g++ $name.o -o $name.out
+./$name.out
