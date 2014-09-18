@@ -1,24 +1,24 @@
 class Solution {
     public:
         ListNode *rotateRight(ListNode *head, int k) {
-            if (head == nullptr || head->next == nullptr || k == 0) return head;
-            ListNode dumpy(-1);
-            dumpy.next = head;
+            if (head == nullptr || k == 0) return head;
 
-            int n = 0;
-            ListNode *p = &dumpy;
+            int n = 1;
+            ListNode *p = head;
             while (p->next)  {
                 n += 1;
                 p = p->next;
             }
-            k = k % n;
-            if (k == 0) return head;
+            k = n - k % n;
+            // form a circle
+            p->next = head;
 
-            ListNode *newtail = &dumpy, *newhead = nullptr;
-            for (int i = 0; i < n - k; ++i) newtail = newtail->next;
-            newhead = newtail->next;
-            newtail->next = nullptr;
-            p->next = dumpy.next;
-            return newhead;
+            for (int i = 0; i < k; ++i) {
+                p = p->next;
+            }
+            head = p->next;
+            // cut the circle
+            p->next = nullptr;
+            return head;
         }
 };
