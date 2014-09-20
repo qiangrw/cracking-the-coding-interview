@@ -8,3 +8,5 @@ echo compile and run $name
 g++ -c $name.cpp -std=c++11
 g++ $name.o -o $name.out
 ./$name.out
+rm $name.out
+rm $name.o
