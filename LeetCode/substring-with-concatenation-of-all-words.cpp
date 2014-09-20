@@ -8,6 +8,7 @@ class Solution {
             unordered_map<string, int> dict;
             for (auto const& x: L) ++dict[x];
 
+            /*
             for (int start = 0; start + win * cnt <= S.size(); ++start) {
                 unordered_map<string, int> temp(dict);
                 for (int i = 0; i < cnt; ++i) {
@@ -17,6 +18,18 @@ class Solution {
                     if (temp[word] == 0) temp.erase(word);
                 }
                 if (temp.empty()) res.push_back(start);
+            }
+            */
+
+            for (auto start = S.begin(); next(start, win*cnt) <= S.end(); ++start) {
+                unordered_map<string, int> temp(dict);
+                for (int i = 0; i < cnt; ++i) {
+                    auto pos = temp.find(string(next(start, i*win), next(start, (i+1)*win)));
+                    if (pos == temp.end() || pos->second == 0) break;
+                    --pos->second;
+                    if (pos->second == 0) temp.erase(pos);
+                }
+                if (temp.empty()) res.push_back(distance(S.begin(), start));
             }
             return res;
         }
