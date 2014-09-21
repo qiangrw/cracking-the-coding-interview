@@ -1,6 +1,6 @@
 class Solution {
     public:
-        ListNode *mergeKLists(vector<ListNode *> &lists) {
+        /*ListNode *mergeKLists(vector<ListNode *> &lists) {
             if (lists.size() == 0) return nullptr;
             ListNode *p = lists[0];
             for (int i = 1; i < lists.size(); i++) p = mergeTwoList(p, lists[i]);
@@ -23,5 +23,28 @@ class Solution {
                 p = p->next;
             }
             return dumpy.next;
+        }*/
+
+        struct cmp {
+            bool operator()(const ListNode* a, const ListNode* b) {
+                return a->val > b->val;
+            }
+        };
+
+        ListNode *mergeKLists(vector<ListNode *> &lists) {
+            priority_queue<ListNode*, vector<ListNode*>, cmp> minheap;
+            for (int i = 0; i < lists.size(); i++) {
+                if (lists[i] != nullptr) minheap.push(lists[i]);
+            }
+            ListNode dummy(-1);
+            ListNode *p = &dummy;
+            while (!minheap.empty()) {
+                ListNode* cur = minheap.top();
+                p->next = cur;
+                p = p->next;
+                minheap.pop();
+                if (cur->next) minheap.push(cur->next);
+            }
+            return dummy.next;
         }
 };
