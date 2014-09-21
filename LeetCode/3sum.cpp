@@ -6,9 +6,10 @@ class Solution {
 
             sort(num.begin(), num.end());
             for (auto a = num.begin(); a != prev(num.end(), 2); ++a) {
+                if (a != num.begin() && *a == *prev(a, 1)) continue;
                 auto b = next(a);
                 auto c = prev(num.end());
-                while(b < c) {
+                while (b < c) {
                     if (*a + *b + *c == 0) {
                         vector<int> temp;
                         temp.push_back(*a);
@@ -17,6 +18,7 @@ class Solution {
                         res.push_back(temp);
                         b++;
                         c--;
+                        while (b < c && *prev(b, 1) == *b) ++b;
                     } else if (*a + *b + *c < 0) {
                         b++;
                     } else {
@@ -25,8 +27,8 @@ class Solution {
                 }
             }
             // remvoe duplicate
-            sort(res.begin(), res.end());
-            res.erase(unique(res.begin(), res.end()), res.end());
+            // sort(res.begin(), res.end());
+            // res.erase(unique(res.begin(), res.end()), res.end());
             return res;
         }
 };
