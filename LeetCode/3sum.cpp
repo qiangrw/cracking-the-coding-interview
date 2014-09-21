@@ -6,7 +6,7 @@ class Solution {
 
             sort(num.begin(), num.end());
             for (auto a = num.begin(); a != prev(num.end(), 2); ++a) {
-                if (a != num.begin() && *a == *prev(a, 1)) continue;
+                if (a != num.begin() && *a == *prev(a)) continue;
                 auto b = next(a);
                 auto c = prev(num.end());
                 while (b < c) {
@@ -18,7 +18,7 @@ class Solution {
                         res.push_back(temp);
                         b++;
                         c--;
-                        while (b < c && *prev(b, 1) == *b) ++b;
+                        while (b < c && *prev(b) == *b) ++b;
                     } else if (*a + *b + *c < 0) {
                         b++;
                     } else {
