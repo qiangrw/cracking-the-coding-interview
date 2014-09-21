@@ -7,6 +7,7 @@ class Solution {
 
             int min_gap = INT_MAX;
             for (auto a = num.begin(); a < prev(num.end(), 2); ++a) {
+                if (a != num.begin() && *a == *prev(a)) continue;
                 auto b = a + 1;
                 auto c = num.end() - 1;
                 while (b < c) {

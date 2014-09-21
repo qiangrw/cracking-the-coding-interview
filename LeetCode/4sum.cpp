@@ -26,8 +26,8 @@ class Solution {
                 }
             }
             // remove duplicate
-            sort(res.begin(), res.end());
-            res.erase(unique(res.begin(),res.end()), res.end());
+            // sort(res.begin(), res.end());
+            // res.erase(unique(res.begin(),res.end()), res.end());
             return res;
         }
 };
