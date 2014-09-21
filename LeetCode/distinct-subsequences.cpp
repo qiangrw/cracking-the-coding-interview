@@ -6,7 +6,7 @@ public:
         vector<int> f(n+1, 0);
         f[0] = 1;
         for (int i = 0; i < m; ++i) {
-            for (int j = n-1; j >= 0; --j) {
+            for (int j = min(n - 1, i); j >= 0; --j) {
                 f[j+1] += (S[i] == T[j]) ? f[j] : 0;
             }
         }
