@@ -24,6 +24,7 @@ vector<T> merge_arrays(const vector<vector<T>> &S) {
 
     for (int i = 0; i < S.size(); ++i) {
         if (!S[i].empty()) {
+            // or you can use minheap.emplace(S[i][0], i);
             minheap.push(make_pair(S[i][0], i));
             S_idx[i] = 1;
         }
@@ -45,11 +46,9 @@ vector<T> merge_arrays(const vector<vector<T>> &S) {
 
 
 int main() {
-    vector<vector<int> > S(3);
-    S[0] = {1, 2, 3, 4};
-    S[1] = {2, 100, 3000, 9999};
-    S[2] = {4, 5, 88, 120, 222, 444, 555};
-    //vector<vector<int> > S = { {1, 2, 3, 4, 5}, {2, 100, 300, 999}, {4, 5, 8, 100000} };
+    vector<vector<int> > S = { {1, 2, 3, 4, 5}, 
+                               {2, 100, 300, 999}, 
+                               {4, 5, 8, 222, 100000} };
     vector<int> res = merge_arrays(S);
     for (auto x: res) cout << x << " ";
     cout << endl;
