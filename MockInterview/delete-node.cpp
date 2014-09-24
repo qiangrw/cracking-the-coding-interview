@@ -3,6 +3,9 @@
 #include <stack>
 using namespace std;
 
+// Given a binary search tree and a range [a,b]
+// Delete all nodes whose values are not in this range
+
 struct TreeNode {
     int val;
     TreeNode *left;
