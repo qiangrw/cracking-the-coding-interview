@@ -41,11 +41,6 @@ TreeNode *sortedArrayToBST(BidIt start, BidIt end) {
     return root;
 }
 
-TreeNode *sortedArrayToBST(vector<int> &num) {
-    return sortedArrayToBST(num.begin(), num.end());
-}
-
-
 TreeNode *deleteNode(TreeNode *root, int a, int b) {
     if (root == nullptr) return root;
     TreeNode *left = deleteNode(root->left, a, b);
@@ -66,8 +61,8 @@ TreeNode *deleteNode(TreeNode *root, int a, int b) {
 }
 
 int main() {
-    vector<int> A = {15, 20, 30, 35, 40, 45, 50};
-    TreeNode *root = sortedArrayToBST(A);
+    vector<int> num = {15, 20, 30, 35, 40, 45, 50};
+    TreeNode *root = sortedArrayToBST(num.begin(), num.end());
     inorderTraversal(root);
     root = deleteNode(root, 25, 35);
     inorderTraversal(root);
